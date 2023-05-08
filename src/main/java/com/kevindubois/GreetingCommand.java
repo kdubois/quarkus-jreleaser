@@ -1,6 +1,5 @@
 package com.kevindubois;
 
-import picocli.CommandLine;
 import picocli.CommandLine.Command;
 import picocli.CommandLine.Parameters;
 
@@ -13,7 +12,7 @@ public class GreetingCommand implements Runnable {
 
     @Override
     public void run() {
-        System.out.printf("Hello %s, go go commando!\n", name);
+        System.out.printf("Hello %s!\n", name);
     }
 
 }

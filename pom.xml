@@ -201,11 +201,8 @@
                   </github>
                 </release>
                 <distributions>
-                  <app>
+                  <quarkus-jreleaser>
                     <type>BINARY</type>
-                    <brew>
-                      <active>ALWAYS</active>
-                    </brew>
                     <artifacts>
                       <artifact>
                         <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-linux-x86_64.tar.gz</path>
@@ -220,7 +217,7 @@
                         <platform>osx-x86_64</platform>
                       </artifact>
                     </artifacts>
-                  </app>
+                  </quarkus-jreleaser>
                 </distributions>
               </jreleaser>
             </configuration>
