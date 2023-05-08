@@ -220,8 +220,7 @@
                   </quarkus-jreleaser>
                 </distributions>
               </jreleaser>
-            </configuration>
-                            
+            </configuration>                            
           </plugin>
         </plugins>
       </build>

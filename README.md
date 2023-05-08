@@ -6,6 +6,17 @@ To learn more about JReleaser, please visit: https://jreleaser.org/
 If you want to learn more about Quarkus, please visit: https://quarkus.io/
 Finally, if you want to learn more about how to use JReleaser specifically with Quarkus project, please visit: https://quarkus.io/guides/jreleaser . 
 
+## Prerequisites
+To run this example, you need:
+
+JDK 11+ installed with JAVA_HOME configured appropriately
+
+Apache Maven 3.8.8+
+
+Optionally Mandrel or GraalVM installed and configured appropriately if you want to build a native executable (or Docker if you use a native container build)
+
+a GitHub account and a GitHub Personal Access token
+
 ## Packaging and running the application
 
 The application can be packaged as a native executable using:
@@ -17,12 +28,21 @@ The application is now runnable using `./target/quarkus-jreleaser*-runner* <your
 
 If you want to learn more about building native executables, please consult https://quarkus.io/guides/maven-tooling.
 
-## Releasing the application with Jreleaser
+## Releasing the application with JReleaser
+
+Set a `JRELEASER_GITHUB_TOKEN` environment variable with a github token that has write access to your repository.
+
+Inspect the pom.xml and update with your name, github url etc.  
+
+### Generate a changelog
+
 You can generate a changelog with
 
 ```shell script
 ./mvnw -Prelease jreleaser:changelog
 ```
+
+### Release Dry run
 
 A release dry run can be run like so:
 
@@ -30,12 +50,13 @@ A release dry run can be run like so:
 ./mvnw -Prelease jreleaser:full-release -Djreleaser.select.current.platform -Djreleaser.dry.run=true
 ```
 
-And finally, you can do an actual release with
+### Release to Github
+
+And finally, you can do an actual release with:
 
 ```shell script
 ./mvnw -Prelease jreleaser:full-release -Djreleaser.select.current.platform
 ```
-
 
 ## Related Guides
 
