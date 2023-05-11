@@ -4,7 +4,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.kevindubois</groupId>
   <artifactId>quarkus-jreleaser</artifactId>
-  <version>1.0.0-Alpha2</version>
+  <version>1.0.0-Alpha3</version>
   <inceptionYear>2023</inceptionYear>  
   <description>quarkus-jreleaser - Sample Quarkus CLI app that uses Jreleaser</description>
   <url>https://github.com/kdubois/quarkus-jreleaser</url>
