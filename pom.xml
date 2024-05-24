@@ -4,9 +4,9 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>com.kevindubois</groupId>
   <artifactId>quarkus-jreleaser</artifactId>
-  <version>1.0.0-Alpha5</version>
+  <version>1.0.0-Alpha6</version>
   <inceptionYear>2023</inceptionYear>  
-  <description>quarkus-jreleaser - Sample Quarkus CLI app that uses Jreleaser</description>
+  <description>quarkus-jreleaser - Sample Quarkus CLI app that uses JReleaser</description>
   <url>https://github.com/kdubois/quarkus-jreleaser</url>
   <developers>
     <developer>
@@ -24,15 +24,15 @@
   <properties>
     <executable-suffix/>
     <distribution.directory>${project.build.directory}/distributions</distribution.directory>
-    <compiler-plugin.version>3.11.0</compiler-plugin.version>
+    <compiler-plugin.version>3.12.1</compiler-plugin.version>
     <maven.compiler.release>17</maven.compiler.release>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
     <quarkus.platform.artifact-id>quarkus-bom</quarkus.platform.artifact-id>
     <quarkus.platform.group-id>io.quarkus.platform</quarkus.platform.group-id>
-    <quarkus.platform.version>3.0.2.Final</quarkus.platform.version>
+    <quarkus.platform.version>3.10.2</quarkus.platform.version>
     <skipITs>true</skipITs>
-    <surefire-plugin.version>3.0.0</surefire-plugin.version>
+    <surefire-plugin.version>3.2.3</surefire-plugin.version>
   </properties>
   <dependencyManagement>
     <dependencies>
@@ -134,17 +134,18 @@
       </activation>
       <properties>
         <skipITs>false</skipITs>
-        <quarkus.package.type>native</quarkus.package.type>
+        <quarkus.native.enabled>true</quarkus.native.enabled>
+        <quarkus.package.jar.enabled>false</quarkus.package.jar.enabled>
       </properties>
     </profile>
-        <profile>
+    <profile>
       <id>dist</id>
       <build>
         <plugins>
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-assembly-plugin</artifactId>
-            <version>3.3.0</version>
+            <version>3.7.1</version>
             <configuration>
               <attach>false</attach>
               <appendAssemblyId>false</appendAssemblyId>
@@ -190,14 +191,24 @@
             <configuration>
               <jreleaser>
                 <project>
-                  <copyright>2023 Kevin Dubois</copyright>
-                </project>  
+                  <copyright>2024 Kevin Dubois</copyright>
+                </project>
+                <announce>
+                  <mastodon>
+                    <active>ALWAYS</active>
+                    <connectTimeout>20</connectTimeout>
+                    <readTimeout>60</readTimeout>
+                    <host>https://mastodon.social</host>
+                    <status>🚀 {{projectName}} {{projectVersion}} has been released! {{releaseNotesUrl}}</status>
+                  </mastodon>
+                </announce>
                 <release>
                   <github>
                     <changelog>
                       <formatted>ALWAYS</formatted>
                       <preset>conventional-commits</preset>
                     </changelog>
+                    <overwrite>true</overwrite>
                   </github>
                 </release>
                 <distributions>
@@ -208,19 +219,19 @@
                         <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-linux-x86_64.tar.gz</path>
                         <platform>linux-x86_64</platform>
                       </artifact>
-                      <artifact>
-                        <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip</path>
-                        <platform>windows-x86_64</platform>
-                      </artifact>
-                      <artifact>
-                        <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip</path>
-                        <platform>osx-x86_64</platform>
-                      </artifact>
+<!--                      <artifact>-->
+<!--                        <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-windows-x86_64.zip</path>-->
+<!--                        <platform>windows-x86_64</platform>-->
+<!--                      </artifact>-->
+<!--                      <artifact>-->
+<!--                        <path>${distribution.directory}/{{distributionName}}-{{projectVersion}}-osx-x86_64.zip</path>-->
+<!--                        <platform>osx-x86_64</platform>-->
+<!--                      </artifact>-->
                     </artifacts>
                   </quarkus-jreleaser>
                 </distributions>
               </jreleaser>
-            </configuration>                            
+            </configuration>
           </plugin>
         </plugins>
       </build>
